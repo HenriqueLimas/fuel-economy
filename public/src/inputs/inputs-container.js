@@ -1,21 +1,13 @@
 import djs from 'dom.js';
+import * as quantity from '../quantity/quantity.js';
+import * as distance from '../distance/distance.js';
 
 let configMap = {
   html: djs`
     <div class="fe-inputs-container">
-      <div class="fe-inputs fe-js-quantity">
-        <div class="fe-quantity">
-          <input class="fe-inputs__input fe-quantity__input" type="text">
-          <span class="fe-unit fe-unit__quantity">L</span>
-        </div>
-      </div>
+      <div class="fe-inputs fe-js-quantity"></div>
 
-      <div class="fe-inputs fe-js-distance">
-        <div class="fe-distance">
-          <input class="fe-inputs__input fe-distance__input" type="text">
-          <span class="fe-unit fe-unit__distance">Km</span>
-        </div>
-      </div>
+      <div class="fe-inputs fe-js-distance"></div>
     </div>
   `
 };
@@ -31,6 +23,9 @@ export function initModule($container) {
   elementMap.$inputContainer = $container.create(configMap.html);
 
   setElementMap($container);
+
+  quantity.initModule(elementMap.$inputQuantity);
+  distance.initModule(elementMap.$inputDistance);
 }
 
 function setElementMap($container) {
