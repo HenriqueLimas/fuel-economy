@@ -11,7 +11,7 @@ let buffer = require('vinyl-buffer');
 
 let src = require('./sources');
 
-gulp.task('scripts', function() {
+gulp.task('scripts', ['service-worker', 'cache-polyfill'], function() {
   let b = browserify({
     entries: [src.scripts.main],
     debug: true
@@ -26,4 +26,14 @@ gulp.task('scripts', function() {
     .pipe($.uglify().on('error', $.util.log))
     .pipe($.sourcemaps.write())
     .pipe(gulp.dest(src.dist_src));
+});
+
+gulp.task('service-worker', function() {
+  return gulp.src('public/service-worker.js')
+    .pipe(gulp.dest(src.dist));
+});
+
+gulp.task('cache-polyfill', function() {
+  return gulp.src('public/cache-polyfill.js')
+    .pipe(gulp.dest(src.dist));
 });

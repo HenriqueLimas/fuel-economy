@@ -8,6 +8,7 @@ let src = require('./sources');
 module.exports = watch;
 
 function watch() {
+  gulp.watch(['public/service-worker.js'], ['scripts', reload]);
   gulp.watch(src.scripts.all, ['scripts', reload]);
   gulp.watch(src.styles.all, ['styles']);
   gulp.watch(src.templates.all, ['html', reload]);

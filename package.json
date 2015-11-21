@@ -39,6 +39,7 @@
     "vinyl-source-stream": "^1.1.0"
   },
   "dependencies": {
-    "dom.js": "^0.2.0"
+    "dom.js": "^0.2.0",
+    "serviceworker-cache-polyfill": "^3.0.0"
   }
 }
