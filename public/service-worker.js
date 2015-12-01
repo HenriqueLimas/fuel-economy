@@ -21,14 +21,21 @@ self.addEventListener('install', function(event) {
 });
 
 self.addEventListener('fetch', function(event) {
+  var request = event.request;
+
+  if (request.method !== 'GET') {
+    event.respondWith(fetch(request));
+    return;
+  }
+
   event.respondWith(
     caches.open('fe-static-files' + VERSION)
       .then(function(cache) {
-        return cache.match(event.request)
+        return cache.match(request)
           .then(function(response) {
-            return response || fetch(event.request)
+            return response || fetch(request)
               .then(function(response) {
-                cache.put(event.request, response.clone());
+                cache.put(request, response.clone());
                 return response;
               });
           });
