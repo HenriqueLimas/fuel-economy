@@ -1,4 +1,4 @@
-importScripts('/cache-polyfill.js');
+importScripts('./cache-polyfill.js');
 
 var VERSION = 'v1';
 self.addEventListener('install', function(event) {
