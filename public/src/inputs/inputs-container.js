@@ -26,12 +26,18 @@ export function initModule($container) {
 
   quantity.config({
     unit: 'L',
-    onInput: function(e) {
+    onInput: function(quantityModel) {
 
     }
   });
   quantity.initModule(elementMap.$inputQuantity);
 
+  distance.config({
+    unit: 'Km',
+    onInput: function(distanceModel) {
+
+    }
+  });
   distance.initModule(elementMap.$inputDistance);
 }
 
