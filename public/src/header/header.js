@@ -9,5 +9,5 @@ let configMap = {
 };
 
 export function initModule($container) {
-   $container.create(configMap.html);
+  $container.create(configMap.html);
 }

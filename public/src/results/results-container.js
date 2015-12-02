@@ -22,6 +22,10 @@ export function initModule($container) {
   fuelComsuption.initModule(elementMap.$fuelComsuption);
 }
 
+export function refreshFuelConsumption({distance, quantity}) {
+  fuelComsuption.refreshFuelConsumption({distance, quantity});
+}
+
 function setElementMap($container) {
   elementMap.$container = $container;
   elementMap.$fuelComsuption = elementMap.$resultsContainer.find('.fe-js-fuel-consumption');

@@ -1,19 +1,22 @@
-importScripts('/cache-polyfill.js');
+importScripts('./cache-polyfill.js');
 
 var VERSION = 'v1';
+var STATIC_FILES = 'fe-static-files-';
+var CACHE_NAME = STATIC_FILES + VERSION;
+
 self.addEventListener('install', function(event) {
   event.waitUntil(
-    caches.open('fe-static-files-' + VERSION).then(function(cache) {
+    caches.open(CACHE_NAME).then(function(cache) {
       return cache.addAll([
-        '/index.html',
-        '/src/lib/normalize.css',
-        '/src/header/header.css',
-        '/src/inputs/inputs.css',
-        '/src/inputs/inputs-container.css',
-        '/src/results/results-container.css',
-        '/src/results/fuel-consumption/fuel-consumption.css',
-        '/src/unit/unit.css',
-        '/src/bundler.js',
+        './index.html',
+        './src/lib/normalize.css',
+        './src/header/header.css',
+        './src/inputs/inputs.css',
+        './src/inputs/inputs-container.css',
+        './src/results/results-container.css',
+        './src/results/fuel-consumption/fuel-consumption.css',
+        './src/unit/unit.css',
+        './src/bundler.js',
         'https://fonts.googleapis.com/css?family=Roboto'
       ]);
     })
@@ -29,7 +32,7 @@ self.addEventListener('fetch', function(event) {
   }
 
   event.respondWith(
-    caches.open('fe-static-files' + VERSION)
+    caches.open(CACHE_NAME)
       .then(function(cache) {
         return cache.match(request)
           .then(function(response) {
