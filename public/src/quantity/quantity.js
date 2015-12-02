@@ -44,7 +44,7 @@ function setElementMap($container) {
     quantityModel.setValue(event.target.value);
 
     if (elementHandlers.onInput) {
-      elementHandlers.onInput(event);
+      elementHandlers.onInput(quantityModel);
     }
   });
 }
