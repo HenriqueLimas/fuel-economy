@@ -3,7 +3,7 @@ import * as quantity from '../quantity/quantity.js';
 import * as distance from '../distance/distance.js';
 
 let configMap = {
-  html: djs`
+  html: djs `
     <div class="fe-inputs-container">
       <div class="fe-inputs fe-js-quantity"></div>
 
@@ -24,7 +24,14 @@ export function initModule($container) {
 
   setElementMap($container);
 
+  quantity.config({
+    unit: 'L',
+    onInput: function(e) {
+
+    }
+  });
   quantity.initModule(elementMap.$inputQuantity);
+
   distance.initModule(elementMap.$inputDistance);
 }
 
