@@ -1,19 +1,19 @@
-importScripts('/cache-polyfill.js');
+importScripts('./cache-polyfill.js');
 
 var VERSION = 'v1';
 self.addEventListener('install', function(event) {
   event.waitUntil(
     caches.open('fe-static-files-' + VERSION).then(function(cache) {
       return cache.addAll([
-        '/index.html',
-        '/src/lib/normalize.css',
-        '/src/header/header.css',
-        '/src/inputs/inputs.css',
-        '/src/inputs/inputs-container.css',
-        '/src/results/results-container.css',
-        '/src/results/fuel-consumption/fuel-consumption.css',
-        '/src/unit/unit.css',
-        '/src/bundler.js',
+        './index.html',
+        './src/lib/normalize.css',
+        './src/header/header.css',
+        './src/inputs/inputs.css',
+        './src/inputs/inputs-container.css',
+        './src/results/results-container.css',
+        './src/results/fuel-consumption/fuel-consumption.css',
+        './src/unit/unit.css',
+        './src/bundler.js',
         'https://fonts.googleapis.com/css?family=Roboto'
       ]);
     })
