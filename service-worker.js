@@ -1,12 +1,32 @@
 importScripts('./cache-polyfill.js');
 
 var VERSION = 'v1';
-var STATIC_FILES = 'fe-static-files-';
-var CACHE_NAME = STATIC_FILES + VERSION;
+var CACHES_FILES = {
+  'fe-static-files': 'fe-static-files-' + VERSION
+};
+
+self.addEventListener('activate', function(event) {
+  var cacheNames = Object.keys(CACHES_FILES).map(function(key) {
+    return CACHES_FILES[key];
+  });
+
+  event.waitUntil(
+    caches.keys().then(function(cachesName) {
+      return Promise.all(
+        cachesName.map(function(cacheName) {
+          if (cacheNames.indexOf(cacheName) === -1) {
+            console.log('Deleting cache ', cacheName);
+            return caches.delete(cacheName);
+          }
+        })
+      );
+    })
+  );
+});
 
 self.addEventListener('install', function(event) {
   event.waitUntil(
-    caches.open(CACHE_NAME).then(function(cache) {
+    caches.open(CACHES_FILES['fe-static-files']).then(function(cache) {
       return cache.addAll([
         './index.html',
         './src/lib/normalize.css',
@@ -32,7 +52,7 @@ self.addEventListener('fetch', function(event) {
   }
 
   event.respondWith(
-    caches.open(CACHE_NAME)
+    caches.open(CACHES_FILES['fe-static-files'])
       .then(function(cache) {
         return cache.match(request)
           .then(function(response) {
