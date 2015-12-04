@@ -1,7 +1,6 @@
 import djs from 'dom.js';
 import * as quantity from '../quantity/quantity.js';
 import * as distance from '../distance/distance.js';
-import * as results from '../results/results-container.js';
 
 let configMap = {
   html: djs `
@@ -20,36 +19,12 @@ let elementMap = {
   $inputDistance: null
 };
 
-let quantityModel;
-let distanceModel;
-
 export function initModule($container) {
   elementMap.$inputContainer = $container.create(configMap.html);
 
   setElementMap($container);
 
-  quantity.config({
-    unit: 'L',
-    onInput: function(model) {
-      quantityModel = model;
-      results.refreshFuelConsumption({
-        distance: distanceModel,
-        quantity: quantityModel
-      });
-    }
-  });
   quantity.initModule(elementMap.$inputQuantity);
-
-  distance.config({
-    unit: 'Km',
-    onInput: function(model) {
-      distanceModel = model;
-      results.refreshFuelConsumption({
-        distance: distanceModel,
-        quantity: quantityModel
-      });
-    }
-  });
   distance.initModule(elementMap.$inputDistance);
 }
 

@@ -18,8 +18,9 @@ let elementMap = {
 
 export function initModule($container) {
   elementMap.$fuelConsumption = $container.create(configMap.html);
-
   setElementMap($container);
+
+  refreshFuelConsumption({});
 }
 
 export function refreshFuelConsumption({quantity, distance}) {
