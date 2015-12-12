@@ -3,6 +3,7 @@
 require('./gulp-scripts');
 require('./gulp-lint');
 require('./gulp-styles');
+require('./gulp-images');
 require('./gulp-templates');
 require('./gulp-clean');
 require('./gulp-test');
@@ -14,6 +15,7 @@ gulp.task('dist:dev', (done) => {
   runSequence(
     ['clean'],
     ['scripts'],
+    ['images'],
     ['styles'],
     ['html'],
     done
@@ -28,6 +30,7 @@ function dist(done) {
     // ['test:ci'],
     ['clean'],
     ['scripts'],
+    ['images'],
     ['styles'],
     ['html'],
     done

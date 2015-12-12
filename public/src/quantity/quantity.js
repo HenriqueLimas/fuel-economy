@@ -6,7 +6,7 @@ import QuantityStore from './quantity.store.js';
 let configMap = {
   html: djs`
     <div class="fe-quantity">
-      <input class="fe-inputs__input fe-quantity__input" type="text">
+      <input class="fe-inputs__input fe-quantity__input" type="number">
       <span class="fe-unit fe-quantity__unit">{$$unit}</span>
     </div>
   `

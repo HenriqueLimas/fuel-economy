@@ -29,6 +29,7 @@ self.addEventListener('install', function(event) {
     caches.open(CACHES_FILES['fe-static-files']).then(function(cache) {
       return cache.addAll([
         './index.html',
+        './manifest.json',
         './src/lib/normalize.css',
         './src/header/header.css',
         './src/inputs/inputs.css',
@@ -37,6 +38,9 @@ self.addEventListener('install', function(event) {
         './src/results/fuel-consumption/fuel-consumption.css',
         './src/unit/unit.css',
         './src/bundler.js',
+        './images/launcher-icon-1x.png',
+        './images/launcher-icon-2x.png',
+        './images/launcher-icon-4x.png',
         'https://fonts.googleapis.com/css?family=Roboto'
       ]);
     })
