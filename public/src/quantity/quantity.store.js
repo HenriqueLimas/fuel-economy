@@ -12,23 +12,21 @@ export default class QuantityStore extends Store {
 
     this.listener = quantityDispatcher.register((listener) => {
       switch(listener.type) {
-        case QuantityActions.VALUE_CHANGED:
-          this.quantity = new Quantity({
-            unit: this.quantity.unit, 
-            value: listener.data
-          });
+      case QuantityActions.VALUE_CHANGED:
+        this.quantity = new Quantity({
+          unit: this.quantity.unit, 
+          value: listener.data
+        });
 
-          console.log('VALUE_CHANGED', this.quantity);
-          break;
+        break;
 
-        case QuantityActions.UNIT_CHANGED:
-          this.quantity = new Quantity({
-            value: this.quantity.value,
-            unit: listener.data
-          });
+      case QuantityActions.UNIT_CHANGED:
+        this.quantity = new Quantity({
+          value: this.quantity.value,
+          unit: listener.data
+        });
 
-          console.log('UNIT_CHANGED', this.quantity);
-          break;
+        break;
       }
 
       this.change();

@@ -32,23 +32,21 @@ export default class ResultsStore extends Store {
 
   _updateQuantityClass(listener) {
     switch(listener.type) {
-      case QuantityActions.VALUE_CHANGED:
-        this.quantity = new Quantity({
-          unit: this.quantity.unit, 
-          value: listener.data
-        });
+    case QuantityActions.VALUE_CHANGED:
+      this.quantity = new Quantity({
+        unit: this.quantity.unit, 
+        value: listener.data
+      });
 
-        console.log('VALUE_CHANGED', this.quantity);
-        break;
+      break;
 
-      case QuantityActions.UNIT_CHANGED:
-        this.quantity = new Quantity({
-          value: this.quantity.value,
-          unit: listener.data
-        });
+    case QuantityActions.UNIT_CHANGED:
+      this.quantity = new Quantity({
+        value: this.quantity.value,
+        unit: listener.data
+      });
 
-        console.log('UNIT_CHANGED', this.quantity);
-        break;
+      break;
     }
 
     this.change();
@@ -56,23 +54,21 @@ export default class ResultsStore extends Store {
 
   _updateDistanceClass(listener) {
     switch(listener.type) {
-      case DistanceActions.VALUE_CHANGED:
-        this.distance = new Distance({
-          unit: this.distance.unit, 
-          value: listener.data
-        });
+    case DistanceActions.VALUE_CHANGED:
+      this.distance = new Distance({
+        unit: this.distance.unit, 
+        value: listener.data
+      });
 
-        console.log('VALUE_CHANGED', this.distance);
-        break;
+      break;
 
-      case DistanceActions.UNIT_CHANGED:
-        this.distance = new Distance({
-          value: this.distance.value,
-          unit: listener.data
-        });
+    case DistanceActions.UNIT_CHANGED:
+      this.distance = new Distance({
+        value: this.distance.value,
+        unit: listener.data
+      });
 
-        console.log('UNIT_CHANGED', this.distance);
-        break;
+      break;
     }
 
     this.change();

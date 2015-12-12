@@ -13,12 +13,11 @@ export default class FuelConsumptionStore extends Store {
 
     resultDispatcher.register((listener) => {
       switch(listener.type) {
-        case ResultsConsumptionsActions.RESULT_CHANGED:
-          this.results = FuelConsumptions.calc(listener.data);
-          this.change(this.results);
+      case ResultsConsumptionsActions.RESULT_CHANGED:
+        this.results = FuelConsumptions.calc(listener.data);
+        this.change(this.results);
 
-          console.log('RESULT_CHANGED', this.results);
-          break;
+        break;
       }
     });
   }

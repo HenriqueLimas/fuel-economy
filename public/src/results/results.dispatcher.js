@@ -1,3 +1,3 @@
 import Dispatcher from '../tools/dispatcher.js';
 
-export default new Dispatcher()
+export default new Dispatcher();
