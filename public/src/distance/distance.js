@@ -6,7 +6,7 @@ import DistanceStore from './distance.store.js';
 let configMap = {
   html: djs`
     <div class="fe-distance">
-      <input class="fe-inputs__input fe-distance__input" type="text">
+      <input class="fe-inputs__input fe-distance__input" type="number">
       <span class="fe-unit fe-distance__unit">{$$unit}</span>
     </div>
   `
