@@ -1,5 +1,5 @@
 {
-  "short_name": "FuelEconomy",
+  "short_name": "Fuel Economy",
   "name": "Fuel economy",
   "icons": [
     {
@@ -15,5 +15,7 @@
       "sizes": "192x192"
     }
   ],
-  "start_url": "index.html?launcher=true"
+  "start_url": "index.html",
+  "display": "fullscreen",
+  "orientation": "portrait"
 }
