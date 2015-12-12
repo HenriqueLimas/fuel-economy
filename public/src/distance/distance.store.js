@@ -1,12 +1,16 @@
+import Store from '../tools/store.js';
+
 import Distance from './distance.class.js';
 import DistanceActions from './distance.actions.js';
 import distanceDispatcher from './distance.dispatcher.js';
 
-export default class DistanceStore {
+export default class DistanceStore extends Store{
   constructor() {
+    super();
+
     this.distance = new Distance({});
 
-    distanceDispatcher.register((listener) => {
+    this.listener = distanceDispatcher.register((listener) => {
       switch(listener.type) {
         case DistanceActions.VALUE_CHANGED:
           this.distance = new Distance({
@@ -27,7 +31,11 @@ export default class DistanceStore {
           break;
       }
 
-      distanceDispatcher.change();
+      this.change();
     });
+  }
+
+  unregisterListener() {
+    distanceDispatcher.unregister(this.listener);
   }
 }

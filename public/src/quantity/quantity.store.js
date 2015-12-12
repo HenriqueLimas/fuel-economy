@@ -1,12 +1,16 @@
+import Store from '../tools/store.js';
+
 import Quantity from './quantity.class.js';
 import QuantityActions from './quantity.actions.js';
 import quantityDispatcher from './quantity.dispatcher.js';
 
-export default class QuantityStore {
+export default class QuantityStore extends Store {
   constructor() {
+    super();
+
     this.quantity = new Quantity({});
 
-    quantityDispatcher.register((listener) => {
+    this.listener = quantityDispatcher.register((listener) => {
       switch(listener.type) {
         case QuantityActions.VALUE_CHANGED:
           this.quantity = new Quantity({
@@ -27,7 +31,11 @@ export default class QuantityStore {
           break;
       }
 
-      quantityDispatcher.change();
+      this.change();
     });
+  }
+
+  unregisterListener() {
+    quantityDispatcher.unregister(this.listener);
   }
 }

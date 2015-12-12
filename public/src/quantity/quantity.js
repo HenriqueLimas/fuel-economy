@@ -1,5 +1,5 @@
 import djs from 'dom.js';
-import quantityDispatcher from './quantity.dispatcher.js';
+
 import QuantityActions from './quantity.actions.js';
 import QuantityStore from './quantity.store.js';
 
@@ -27,11 +27,12 @@ export function initModule($container) {
   setElementHandlers();
 
   quantityStore = new QuantityStore();
-  quantityDispatcher.onChange(function() {
+  quantityStore.onChange(function() {
     refreshUnit(quantityStore.quantity.unit);
   });
 
   QuantityActions.changeUnit('L');
+  quantityStore.unregisterListener();
 }
 
 function refreshUnit(unit) {

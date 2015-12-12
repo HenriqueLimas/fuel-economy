@@ -1,5 +1,5 @@
 import djs from 'dom.js';
-import distanceDispatcher from './distance.dispatcher.js';
+
 import DistanceActions from './distance.actions.js';
 import DistanceStore from './distance.store.js';
 
@@ -27,11 +27,12 @@ export function initModule($container) {
   setElementHandlers();
 
   distanceStore = new DistanceStore();
-  distanceDispatcher.onChange(function() {
+  distanceStore.onChange(function() {
     refreshUnit(distanceStore.distance.unit);
   });
 
   DistanceActions.changeUnit('Km');
+  distanceStore.unregisterListener();
 }
 
 function refreshUnit(unit) {

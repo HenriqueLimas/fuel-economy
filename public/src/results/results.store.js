@@ -1,3 +1,5 @@
+import Store from '../tools/store.js';
+
 import Quantity from '../quantity/quantity.class.js';
 import QuantityActions from '../quantity/quantity.actions.js';
 import quantityDispatcher from '../quantity/quantity.dispatcher.js';
@@ -8,8 +10,10 @@ import distanceDispatcher from '../distance/distance.dispatcher.js';
 
 import ResultsActions from './results.actions.js';
 
-export default class ResultsStore {
+export default class ResultsStore extends Store {
   constructor() {
+    super();
+
     this.quantity = new Quantity({});
     this.distance = new Distance({});
 
@@ -47,7 +51,7 @@ export default class ResultsStore {
         break;
     }
 
-    quantityDispatcher.change();
+    this.change();
   }
 
   _updateDistanceClass(listener) {
@@ -71,7 +75,7 @@ export default class ResultsStore {
         break;
     }
 
-    distanceDispatcher.change();
+    this.change();
   }
 
   updateResults() {

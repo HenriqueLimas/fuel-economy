@@ -1,13 +1,13 @@
-export default class Dispatcher {
+export default class Store {
   constructor() {
     this._listeners = new Map();
   }
 
-  dispatch(obj) {
-    this._listeners.forEach((listener) => listener(obj));
+  change() {
+    this._listeners.forEach((listener) => listener());
   }
 
-  register(callback) {
+  onChange(callback) {
     let listener = Symbol();
 
     this._listeners.set(listener, callback);
@@ -15,7 +15,7 @@ export default class Dispatcher {
     return listener;
   }
 
-  unregister(listener) {
+  unregisterChange(listener) {
     return this._listeners.delete(listener);
   }
 }
