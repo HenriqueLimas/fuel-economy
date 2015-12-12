@@ -25,7 +25,7 @@ module.exports = dist;
 function dist(done) {
   runSequence(
     ['lint'],
-    ['test:ci'],
+    // ['test:ci'],
     ['clean'],
     ['scripts'],
     ['styles'],

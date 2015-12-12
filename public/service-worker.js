@@ -1,6 +1,6 @@
 importScripts('./cache-polyfill.js');
 
-var VERSION = 'v1';
+var VERSION = 'v2';
 var CACHES_FILES = {
   'fe-static-files': 'fe-static-files-' + VERSION
 };

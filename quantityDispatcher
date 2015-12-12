@@ -1,0 +1,46 @@
+quantityDispatcher
+  valueChanged
+  unitChanged
+
+distanceDispatcher
+  valueChanged
+  unitChanged
+
+resultDispatcher
+  valueChanged
+
+result.store
+  quantity.class
+  distance.class
+
+  quantityDispatcher.register(function(listener) {
+    updateQuantityClass();
+
+    _updateResults();
+  });
+
+  _updateResults()
+    resultsDispatcher.dispatch({
+      data: {
+        quantity,
+        distance
+      }
+    });
+
+fuelComsumption.dispatcher
+  valueChanged
+
+fuelComsumption.store
+  resultsDispatcher.register(function(listener) {
+    result = calc();
+
+    fuelComsumptionsDispatcher.dispatch(result);
+  })
+
+fuelComsumption.view
+  fuelComsumptionsDispatcer.register(function() {
+    if type === UNIT
+      _updateUnit()
+    else if type === VALUE
+      _updateValue()
+  });

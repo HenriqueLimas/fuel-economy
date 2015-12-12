@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "gulp dist",
-    "test": "gulp test:ci"
+    "test": "gulp test:ci",
+    "dist": "gulp dist && git checkout gh-pages && git merge master && gulp dist"
   },
   "author": "",
   "license": "ISC",

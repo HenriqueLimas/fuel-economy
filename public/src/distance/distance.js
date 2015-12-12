@@ -1,5 +1,7 @@
 import djs from 'dom.js';
-import Distance from './distance.class.js';
+
+import DistanceActions from './distance.actions.js';
+import DistanceStore from './distance.store.js';
 
 let configMap = {
   html: djs`
@@ -17,34 +19,34 @@ let elementMap = {
   $unit: null
 };
 
-let elementHandlers = {
-  onInput: null
-};
-
-let distanceModel = null;
+let distanceStore;
 
 export function initModule($container) {
   elementMap.$distance = $container.create(configMap.html);
   setElementMap($container);
+  setElementHandlers();
+
+  distanceStore = new DistanceStore();
+  distanceStore.onChange(function() {
+    refreshUnit(distanceStore.distance.unit);
+  });
+
+  DistanceActions.changeUnit('Km');
+  distanceStore.unregisterListener();
 }
 
-export function config({unit, onInput}) {
-  distanceModel = new Distance({unit});
-  elementHandlers.onInput = onInput;
-  
-  configMap.html = configMap.html.replace('{$$unit}', distanceModel.unit);
+function refreshUnit(unit) {
+  elementMap.$unit.innerHTML = unit;
 }
 
 function setElementMap($container) {
   elementMap.$container = $container;
   elementMap.$input = elementMap.$distance.find('.fe-distance__input');
   elementMap.$unit = elementMap.$distance.find('.fe-distance__unit');
+}
 
+function setElementHandlers() {
   elementMap.$input.addEventListener('input', function(event) {
-    distanceModel.setValue(event.target.value);
-
-    if (elementHandlers.onInput) {
-      elementHandlers.onInput(distanceModel);
-    }
+    DistanceActions.changeValue(event.target.value);    
   });
 }
