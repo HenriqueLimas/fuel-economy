@@ -1,0 +1,19 @@
+{
+  "short_name": "FuelEconomy",
+  "name": "Fuel economy",
+  "icons": [
+    {
+      "src": "images/launcher-icon-1x.png",
+      "sizes": "48x48"
+    },
+    {
+      "src": "images/launcher-icon-2x.png",
+      "sizes": "96x96"
+    },
+    {
+      "src": "images/launcher-icon-4x.png",
+      "sizes": "192x192"
+    }
+  ],
+  "start_url": "index.html?launcher=true"
+}
