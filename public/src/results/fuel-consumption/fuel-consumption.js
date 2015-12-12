@@ -1,5 +1,7 @@
 import djs from 'dom.js';
-import FuelConsumption from './fuel-consumption.class.js';
+
+import FuelConsumptionStore from './fuel-consumption.store.js';
+import fuelConsumptionDispatcher from './fuel-consumption.dispatcher.js';
 
 let configMap = {
   html: djs`
@@ -16,18 +18,24 @@ let elementMap = {
   $fuelValue: null
 };
 
+let fuelConsumptionStore;
+
 export function initModule($container) {
   elementMap.$fuelConsumption = $container.create(configMap.html);
   setElementMap($container);
 
-  refreshFuelConsumption({});
+  fuelConsumptionStore = new FuelConsumptionStore();
+
+  fuelConsumptionDispatcher.onChange(function() {
+    refreshFuelConsumption(fuelConsumptionStore.results);
+  });
+
+  fuelConsumptionDispatcher.change();
 }
 
-export function refreshFuelConsumption({quantity, distance}) {
-  var result = FuelConsumption.calc({quantity, distance});
-
-  elementMap.$fuelUnit.innerHTML = result.unit;
-  elementMap.$fuelValue.innerHTML = result.value;
+function refreshFuelConsumption(results) {
+  elementMap.$fuelUnit.innerHTML = results.unit;
+  elementMap.$fuelValue.innerHTML = results.value;
 }
 
 function setElementMap($container) {
